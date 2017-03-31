@@ -169,6 +169,35 @@ Assim como ilustrado pela imagem acima o componente possui 4 pinos (Vcc, Trigger
 
 Com relação a especificação da medição de pH, torna-se necessário o uso do kit SKU: SEN0161 que é um kit integrado com um indicador de alimentação, um conector BNC e interface do sensor PH2.0. Segue abaixo a especificação:
 
+\begin{itemize}
+  \item Potência do módulo: 5.00V
+  \item Tamanho da placa de circuito: 43mm x 32mm
+  \item Faixa de medição do pH: 0-14
+  \item Temperatura de medição: 0-60 ºC
+  \item Precisão: +- 0.1pH (25 ºC)
+  \item Tempo de resposta: <=   1min
+  \item Sensor de pH com conector BNC
+  \item Interface PH2.0 (patch de 3 pés)
+  \item Potenciômetro de ajuste de ganho
+  \item Indicador de energia LED
+\end{itemize}
+
+Calibração do Kit:
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[keepaspectratio=true,scale=0.6]{figuras/ph.eps}
+	\caption{Voltagem de Saída medida em relação ao pH}
+	\label{ph}
+\end{figure}
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[keepaspectratio=true,scale=0.3]{figuras/sensorph.eps}
+	\caption{Kit a ser adotado para medição de pH.}
+	\label{sensorph}
+\end{figure}
+
 \subsubsection{Válvula de Liberação de açúcar}
 
 Para realizar a liberação de açúcar em tempos contínuos será utilizado um motor de passos para habilitar o despejo de açúcar na função de válvula. Para isso foi escolhido o componente Motor de Passo 28BYJ-48 + Driver ULN2003. Tal componente utiliza conversão de tensão em movimentos rotacionais, de modo a codificar o mesmo de modo a parar em posições específicas. De modo que este elemento será utilizado para o controle da válvula de depósito de açúcar, que quando acionado dá-se o passo necessário para liberação da quantidade de açúcar necessária para dentro do Biorreator. Já o Driver, é um sistema vendido juntamente ao motor, qual permite tal codificação de controle. Observa-se as seguintes especificações:
@@ -242,7 +271,7 @@ Resolução               & 12 bits          \\ \hline
 
 \begin{figure}[h]
 	\centering
-	\includegraphics[keepaspectratio=true,scale=0.3]{figuras/sensor4.eps}
+	\includegraphics[keepaspectratio=true,scale=0.5]{figuras/sensor4.eps}
 	\caption{Conversor D/A MCP4725}
 	\label{sensor4}
 \end{figure}
@@ -285,7 +314,7 @@ Tarefas:
   \item Criar endpoint para receber dados na api
   \item Criar front-end do app para receber a temperatura
   \item Criar comunicação app-api para enviar dados
-\end{itemize
+\end{itemize}
 
 \subsubsubsection{US03}
 
@@ -306,3 +335,309 @@ Tarefas:
 \end{itemize}
 
 \subsubsubsection{US04}
+
+Eu como usuário desejo controlar a quantidade de açúcar do biorreator para ter um controle do pH.
+
+Critérios de aceitação:
+\begin{itemize}
+  \item Quantidade de rotações que o motor vai executar
+\end{itemize}
+
+Tarefas:
+\begin{itemize}
+  \item Criar endpoint para receber os dados do controle de açúcar
+  \item Criar front-end que recebe a quantidade de rotações do motor no app
+  \item Criar comunicação app-api para enviar os dados de quantidade de rotações
+\end{itemize}
+
+\subsubsubsection{US05}
+
+Eu como usuário desejo gerar um relatório sobre uma determinada fermentação para ver o que aconteceu de certo e errado.
+
+Critérios de aceitação:
+\begin{itemize}
+  \item Gerar relatório em pdf
+  \item Gerar relatório no próprio aplicativo
+\end{itemize}
+
+Tarefas:
+\begin{itemize}
+  \item Gerar endpoint que enviará todos os dados do relatório
+  \item Gerar estrutura do pdf
+  \item Fazer front-end do relatório no app
+  \item Fazer comunicação de dados app-api
+  \item Gerar pdf
+\end{itemize}
+
+\subsubsubsection{US06}
+
+Eu como usuário desejo receber notificações com os status do biorreator para monitorar sem o aplicativo estar aberto.
+
+Critérios de aceitação:
+\begin{itemize}
+  \item Push notification quando finalizar o processo
+  \item Push notification quando algum sensor apresentar dados suspeitos
+\end{itemize}
+
+Tarefas:
+\begin{itemize}
+  \item Configurar serviço de push notification na api
+  \item Configurar serviço de push notification no app
+  \item Criar momentos de envio da push notification na api
+\end{itemize}
+
+\section{Especificação do biorreator}
+
+\subsection{Estrutura}
+
+O intuito inicial do projeto seria em adotar normas para vasos de pressão, sendo estas a Norma Regulamentadora 13, de aplicação nacional, e a norma regulamentada pela ASME \textit{(American Society of Mechanical Engineers)}, porém devido a falta de recursos financeiros para seguí-los, os docentes sugeriram formular o projeto como um protótipo. O protótipo foi formulado no CATIA como prévia para fabricação, sendo passível de alterações futuras.
+
+O material adotado no projeto para o desenvolvimento do alicerce do biorreator foi o aço inoxidável 304 devido a diversos motivos, como o alto grau de pureza presente na peça em relação aos demais aços, sendo que esta pureza se torna necessária pertinente a fermentação que ocorrerá, não sendo possível a realização com elementos contaminantes na reação, outro fato se dá a alta condução térmica, aperfeiçoando a troca de calor para uma maior eficiência na transferência de calor do sistema.
+
+As chapas metálicas serão adquiridas e remetidas para calandragem, onde tomarão forma cônica e cilíndrica para a adequação  ao projeto. O fundo do tanque com formato esférico foi cogitado, mas diante a dificuldade em conformar a peça tornou-se impraticável sua produção.
+
+As figuras abaixo ilustram a modelagem realizada para ter como ponto de partida o desenvolvimento estrutural do biorreator.
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[keepaspectratio=true,scale=0.3]{figuras/catia.eps}
+	\caption{Biorreator modelado no CATIA - Posição 1}
+	\label{catia}
+\end{figure}
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[keepaspectratio=true,scale=0.4]{figuras/catia2.eps}
+	\caption{Biorreator modelado no CATIA - Posição 2}
+	\label{catia2}
+\end{figure}
+
+A modelagem será feita com possíveis correções entre o ponto de controle 1 e 2, para então ser utilizado um software para simulação térmica do biorreator no  \textit{ANSYS}.
+
+\subsection{Processos Termoquímicos}
+
+A temperatura dentro do biorreator não possui uniformidade em todas as regiões, uma vez que o calor provocado pela fermentação não ocorre a uma taxa constante. Dessa forma, torna-se necessário o uso de múltiplos sensores de temperatura, para um monitoramento mais preciso (SILVEIRA, 2009). Uma das características do biorreator proposto é a variação da temperatura em uma faixa de 0 a 100ºC com controle automático PID no aquecimento. Os sistemas de resfriamento e aquecimento serão separados, uma vez que o resfriamento só ocorrerá ao final da reação com a finalidade de resfriar o mosto para etapas posteriores do processo, ou como medida de segurança para o caso de superaquecimento do biorreator.
+
+\subsubsection{Sistema de resfriamento}
+
+O ciclo de refrigeração é definido como uma região onde o fluido refrigerante circula, permutando em líquido e vapor de forma que viabilize a transferência de calor de um objeto onde ocorre a evaporação, processo que absorve calor, com baixa pressão e temperatura e a condensação, situação a qual rejeita calor, com alta pressão e temperatura. A temperatura dentro do cilindro do biorreator não possui uniformidade em todas as regiões, uma vez que o calor provocado pela fermentação não ocorre a uma taxa constante. Dessa forma, torna-se necessário o uso de múltiplos sensores de temperatura, para um monitoramento mais preciso (SILVEIRA, 2009).
+
+Segundo MCKETTA (1992) os tipos de sistemas de resfriamento estão em escala crescente a seguir
+
+\textbf{Jaqueta Simples:} A jaqueta simples, ou camisa simples, possui de 2 a 3 polegadas de espaço anular na qual o fluido percorre lentamente. Ele é voltado para aplicações com baixa necessidade de transferência de calor.
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[keepaspectratio=true,scale=0.4]{figuras/jaqueta.eps}
+	\caption{Jaqueta simples - adaptado de SILVEIRA, 2009}
+	\label{jaqueta}
+\end{figure}
+
+\textbf{Jaqueta com defletores em espiral:} A jaqueta com defletores consiste em um espiral longo de metal que direciona velocidades de fluido um pouco acima em relação as jaquetas simples.
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[keepaspectratio=true,scale=0.6]{figuras/jaqueta2.eps}
+	\caption{Imagem em corte de jaqueta com defletores SILVEIRA, 2009}
+	\label{jaqueta2}
+\end{figure}
+
+\textbf{Jaqueta tipo dimple:} A jaqueta dimple possui a característica de não afetar a resistência sendo construído a partir de materiais mais leves.
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[keepaspectratio=true,scale=0.2]{figuras/jaqueta3.eps}
+	\caption{Jaqueta Dimple. Fonte: Royal Welding - Site de Internet}
+	\label{jaqueta3}
+\end{figure}
+
+\textbf{Jaqueta de serpentina meia-cana:} A jaqueta meia cana eleva a rigidez da estrutura, sendo os tubos soldados a parte externa do vaso.
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[keepaspectratio=true,scale=0.2]{figuras/jaqueta4.eps}
+	\caption{Jaqueta meia-cana. Fonte: Metalúrgica Metalnox - Site de Internet}
+	\label{jaqueta4}
+\end{figure}
+
+\textbf{Chapa integral ou jaqueta com serpentina tipo painel:} Esse tipo de serpentinas possuem a característica de transferir calor com controle e efetividade, podem ser utilizados fluidos em altas temperaturas, são fabricadas em materiais acessíveis, entretanto, esse tipo de sistema é mais caro do que aqueles que possuem serpentina interna (MCKETTA,1992)
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[keepaspectratio=true,scale=0.8]{figuras/serpentina.eps}
+	\caption{Serpentina tipo painel. Fonte: Wikipedia - Site de Internet}
+	\label{serpentina}
+\end{figure}
+
+Dos modelos de serpentina que serão estudados para ver qual se adequa melhor ao projeto, se tem 3 opções:
+
+\begin{itemize}
+  \item \textbf{Serpentina completamente dentro do reator:} Se escolhida essa opção o materialda serpentina será de aço inox, para evitar contaminação do mostro;
+  \item \textbf{Serpentina parcialmente dentro do reator:} A serpentina passaria por pontos específicos do reator, para diminuir consideravelmente o acúmulo de mostro nos enrolamentos da estrutura;
+  \item \textbf{Serpentina completamente fora do reator, em volta da parte externa:} Nesse caso teria a necessidade de adicionar um material isolante em volta da serpentina para que não houvesse interferência do ambiente na troca de calor;
+\end{itemize}
+
+Além dos sistemas citados, outra opção interessante é o uso de pastilhas termoelétricas do tipo \textit{Peltier}. Elas são um cooler termoelétrico com a capacidade de aquecer e resfriar objetos em minutos com a simples alimentação dos seus terminais. Ou seja, seu princípio de funcionamento se consiste basicamente na passagem de corrente elétrica contínua entre dois metais diferentes e com isso, aplica-se uma voltagem entre os pólos, que por consequência, um diferencial de temperatura entre as faces opostas das placas, é criado. Importante ressaltar que apesar da pastilha ter a capacidade de aquecimento, nesse projeto ela será usada apenas para resfriar, uma vez que o sistema de aquecimento é separado e controlado de forma PID.
+
+Após ligar a pastilha \textit{Peltier} um lado irá aquecer rapidamente, enquanto o outro esfriará, contudo para que não entre em equilíbrio e comprometa a pastilha é necessário um dissipador de calor do lado quente. Essa partilha será ligada em uma fonte de 12V. A Figura \ref{pastilhas} mostra o funcionamento simplificado de como essas pastilhas funcionam, com relação a transferência de calor.
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[keepaspectratio=true,scale=0.6]{figuras/pastilhas.eps}
+	\caption{Funcionamento das pastilhas termoelétricas}
+	\label{pastilhas}
+\end{figure}
+
+A figura a seguir mostra um sistema esquemático do sistema termoelétrico do efeito \textit{Peltier}, já acoplado com os respectivos dissipadores e ventiladores, componentes estes, essenciais para o adequado funcionamento do sistema.
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[keepaspectratio=true,scale=0.6]{figuras/peltier.eps}
+	\caption{Esquema do efeito Peltier}
+	\label{peltier}
+\end{figure}
+
+Um modelo bastante conhecido é a Pastilha Termoelétrica Peltier EC1-12706 Cooler.
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[keepaspectratio=true,scale=0.6]{figuras/cooler.eps}
+	\caption{Pastilha Termoelétrica Peltier EC1-12706 Cooler}
+	\label{cooler}
+\end{figure}
+
+Suas especificações são citadas abaixo:
+\begin{itemize}
+  \item Faixa de Temperatura: -30 a 70 Celsius;
+  \item Tensão de operação: 0 -15,2 VDC;
+  \item Corrente de operação: 0 - 6 A;
+  \item Potência máxima: 60W;
+  \item Dimensões: 40 x 40 mm
+  \item Preço médio: R\$ 22,90
+\end{itemize}
+
+Em relação ao conjunto célula \textit{Peltier}, dissipador de calor e ventilador (ventoinha) encontrou-se duas possibilidades. A primeira seria comprar um radiador frigorífico (conjunto de resfriamento com os três respectivos elementos já montados), figura \ref{radiador}.
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[keepaspectratio=true,scale=0.5]{figuras/radiador.eps}
+	\caption{Radiador para refrigeração}
+	\label{radiador}
+\end{figure}
+
+Em seguida ligá-lo a uma fonte de alimentação, figura \ref{radiador2}. O preço encontrado para um radiador, modelo Geekcreit® 12V 6A DIY foi em média de R\$ 68,00.
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[keepaspectratio=true,scale=0.6]{figuras/radiador2.eps}
+	\caption{Radiador conectado à fonte de 12 V}
+	\label{radiador2}
+\end{figure}
+
+A segunda seria comprar os elementos separados e uni-los. Ao se realizar um estudo mais detalhado de custos a alternativa mais econômica será escolhida.
+
+Baseando-se no uso de células \textit{Peltier} , a água em um reservatório será resfriada e esse líquido sob baixa temperatura será bombeado para que possa percorrer a serpentina que vai estar acompanhada do reator Um modelo simplificado deste sistema é mostrado na figura X:
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[keepaspectratio=true,scale=0.5]{figuras/resfriamento.eps}
+	\caption{Modelo básico do sistema de resfriamento}
+	\label{resfriamento}
+\end{figure}
+
+\subsubsection{Sistema de aquecimento}
+
+Foram estudados alguns sistemas de aquecimento para o presente Biorreator e várias técnicas foram encontradas, como a  cinta térmica de silicone, que fica na parte externa à estrutura e proporciona uma transferência de calor para o fluido contido no reator, de acordo com a faixa de temperatura que se deseja, controlada através de um termostato, que oscilam de 0º a 90º ou 40º a 210º.
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[keepaspectratio=true,scale=0.3]{figuras/cinta.eps}
+	\caption{Modelos de cintas térmicas de silicone para diversos tamanhos de tambores}
+	\label{cinta}
+\end{figure}
+
+A cinta elétrica de silicone fornece aquecimento rápido e eficaz, tendo vida útil longa e possui uma fácil aplicação, o que facilitaria o seu uso quando for necessário, já que o aquecimento seria utilizado em algumas situações específicas, pois trata-se de um biorreator genérico, onde envolverá diferentes tipos de fermentação. Este tipo de cinta é projetada para espalhar de forma eficiente o calor sobre a face do biorreator e o controle preciso de temperatura é obtido através do termostato que proporciona um aquecimento uniforme, como ilustra a Figura a seguir:
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[keepaspectratio=true,scale=0.4]{figuras/cinta2.eps}
+	\caption{Simulação de transferência de calor da cinta.
+Fonte: higher.com.br}
+	\label{cinta2}
+\end{figure}
+
+Outra forma que foi encontrada para o sistema de aquecimento foi a utilização de resistência elétrica para aquecer o fluido presente no reator. Essas resistências convertem energia elétrica em calor por meio do processo de dissipação de calor pelo aquecimento Joule, onde uma corrente elétrica aquece um condutor por meio da resistência inerente a ele. Um dos pontos positivos em sua utilização é que a resistência elétrica pode ser submetida a severas condições de trabalho sem prejudicar seu próprio funcionamento.
+
+Atualmente, as resistências elétricas são constituídas de ligas de níquel e crômio que suportam temperatura de até 1000 ºC, são resistentes e também inoxidáveis.
+
+Nas aplicações industriais, este tipo de sistema de aquecimento é mais utilizado devido a sua arquitetura de posicionamento. Em biorreatores, a resistência é utilizada pois sua instalação é feita dentro do próprio reator de forma que toda ela esteja em contato com o fluido que será aquecido, desta forma se tornou mais viável o estudo deste sistema de aquecimento, ilustrado na Figura \ref{resistencia}.
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[keepaspectratio=true,scale=0.2]{figuras/resistencia.eps}
+	\caption{Resistência para aquecimento}
+	\label{resistencia}
+\end{figure}
+
+O funcionamento do sistema de aquecimento consistirá na alimentação da resistência com corrente provinda do sistema de alimentação, para que a potência seja estabelecida e então o aquecimento aconteça. Para o controle da temperatura do fluido, o sistema de aquecimento trabalhará em conjunto com controle eletrônico na forma de controlador PID \textit{(Proporcional-Integral-Derivativo)}, que funciona como um controlador de temperatura.
+
+ O controlador PID é integrado com um sensor de temperatura, desta forma ele calcula uma resposta de saída para a resistência, realizando assim o rampeamento da temperatura e por consequência seu controle. Os controladores PID servem para que não aconteça variação de temperatura e que a resistência mantenha o fluido em um temperatura constante. A Figura x ilustra um dos tipos de controladores PID.
+
+ \begin{figure}[h]
+ 	\centering
+ 	\includegraphics[keepaspectratio=true,scale=0.3]{figuras/pid.eps}
+ 	\caption{PID para controle de temperatura. Fonte: Ballast Conectors}
+ 	\label{pid}
+ \end{figure}
+
+\subsubsection{Sistema de Armazenamento de CO2}
+
+A partir do cenário mundial, quanto a questões ambientais, o lançamento de gases poluentes no meio ambiente tem causado inúmeros prejuízos aos seres humanos. Com isso, protocolos e acordos ambientais foram criados, no decorrer dos anos, para que essas emissões fossem feitas de forma menos intensa. Devido a isto, a captura de CO2, advindos da fermentação de biorreatores, se torna extremamente importante para o meio ambiente.
+
+O sistema de armazenamento de CO2 deste presente projeto será feito através de um outro sistema, acoplado ao biorreator, na qual o seu princípio de se consistirá na produção de microalgas em meio aquoso, através da fotossíntese. O seu funcionamento será similar ao de um aquário, onde microalgas serão colocadas na água e uma bomba (bomba de aquário) será responsável por fazer a oxigenação da mesma. Todo esse processo deverá ser feito na presença de luz, para assim ocorrer a fotossíntese.
+
+A forma de captura deste gás gera ainda mais valores agregados a este projeto, pois as microalgas produzirão energia em forma de biomassa, viabilizando assim a produção de biocombustíveis.
+
+\begin{figure}[h]
+ \centering
+ \includegraphics[keepaspectratio=true,scale=0.5]{figuras/algas.eps}
+ \caption{Produção de microalgas. Fonte: dicasverdes.com}
+ \label{algas}
+\end{figure}
+
+O sistema que será utilizado, acoplado ao biorreator, será similar ao mostrado na Figura \ref{algas}.
+
+\subsubsection{Alimentação da Bancada}
+
+A alimentação da bancada se consistirá em um cabo de energia com conexão tripolar (com fio terra) seguindo a padronização da Comissão Eletrotécnica Internacional – IEC. Constituída com uma potência de 220 V, o equivalente a 1200 W, em pleno funcionamento. Acredita-se que com todos os sensores e equipamentos que serão utilizados serão compatíveis com a alimentação informada, onde todos eles estarão interligados a este cabo de energia e a um sistema de software, que permitirá ou não o seu acionamento, de acordo com a necessidade de aplicação.
+
+\subsection{Arquitetura}
+
+\subsubsection{Comunicação entre os módulos}
+
+A arquitetura de comunicação do sistema foi determinada pela disposição de módulos, sendo que para cada um existe a separação de suas responsabilidades, de forma que cada um destes cumpra uma única tarefa dentro do sistema para que exista uma melhor forma de controle e manutenção. Assim tanto a identificação de problemas no decorrer do desenvolvimento e de futuras atualizações como o trabalho paralelizado são possibilitados pela natureza de que cada um destes módulos se comporta como um serviço para o sistema como um todo.
+
+O sistema irá possuir ao todo 6 módulos e os mesmos estão separados em 3 grupos de acordo com suas principais responsabilidades: controle, comunicação e interface. Os sensores e atuadores são os módulos presentes na área de controle, por serem responsáveis por controlar e atuar sobre os índices do sistema que serão captados. Enquanto os conversores, \textit{Raspberry} e a \textit{API} serão os módulos responsáveis pelo tratamento e comunicação de dados com o aplicativo que é a camada responsável pela apresentação e recepção de valores com o usuário final.
+
+Os módulos serão desenvolvidos com as seguintes tecnologias:
+\begin{itemize}
+  \item Para comunicação e tratamento de dados vindo dos sensores através de uma interface com arduino será utilizada bibliotecas em C.
+  \item Para comunicação e tratamento de dados vindo dos conversores AD/DA serão utilizadas bibliotecas em Python.
+  \item Para construção da API será usado um framework javascript NodeJS e será hospedado no servidor do Heroku.
+  \item O aplicativo será desenvolvido através de um framework javascript de cross-platform, React Native.
+\end{itemize}
+
+\begin{figure}[h]
+ \centering
+ \includegraphics[keepaspectratio=true,scale=0.5]{figuras/arquitetura.eps}
+ \caption{Arquitetura de monitoramento e controle}
+ \label{arquitetura}
+\end{figure}
+
+\subsubsection{Especificação de Tecnologia de Software}
+
+O sistema integrado de software terá como arquitetura duas camadas de comunicação, onde uma destas será o servidor responsável pelo tratamento e disponibilização dos dados vindos do sistema de sensores e a outra será a aplicação de interface com o usuário, onde serão apresentados gráficos e também recebidos inputs necessários para o sistema.
+
+Para o servidor será utilizado um mecanismo de execução em Javascript, o NodeJS, que será responsável pelo serviço de \textit{REST}, que é uma abstração da arquitetura da \textit{World Wide Web} através de protocolos de comunicação \textit{HTTP} sendo aplicado à um web service fornecendo uma API para acesso do sistema de interface com o usuário. Como notação para transferência de dados será utilizado objetos \textit{JSON} para enviar as estruturas para o sistema de interface.
+
+O sistema de interface com usuários será focado para uso mobile então será utilizado o \textit{framework} \textit{ReactNavite}, este é um \textit{cross-platform} em \textit{Javascript} que será responsável por gerar aplicativos para plataformas \textit{Android e iOS}. O aplicativo terá como função comunicar com a \textit{API} para recepção de dados que serão mostrados em relatórios ou para enviar dados que serão responsáveis por emitir sinais junto aos atuadores.
