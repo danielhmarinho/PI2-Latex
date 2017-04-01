@@ -123,7 +123,7 @@ Sobre a precisão do componente, os valores de saída são discretizados na em 8
 
 \subsubsection{Medição de densidade}
 
-A definição da densidade no projeto é um requisito para provar a funcionalidade do projeto, torna-se necessário a sua medição. Considerando que o uso de um sensor de densidade é inviável de medição, usa-se o princípio da medição de pressão diferencial para estimar o valor da densidade através da manipulação da equação de Bernoulli. A especificação da medição de densidade, torna-se necessário o uso de sensores de pressão aplicados em dois pontos distintos no interior do biorreator.
+A definição da densidade no projeto \nocite{ADS1115} é um requisito para provar a funcionalidade do projeto, torna-se necessário a sua medição. Considerando que o uso de um sensor de densidade é inviável de medição, usa-se o princípio da medição de pressão diferencial para estimar o valor da densidade através da manipulação da equação de Bernoulli. A especificação da medição de densidade, torna-se necessário o uso de sensores de pressão aplicados em dois pontos distintos no interior do biorreator.
 
 \begin{figure}[h]
 	\centering
@@ -132,9 +132,36 @@ A definição da densidade no projeto é um requisito para provar a funcionalida
 	\label{densidade}
 \end{figure}
 
+Com relação ao coeficientes e parâmetros matemáticos tem-se:
+
+\begin{itemize}
+\item \( \rho \): Densidade
+\item t: Temperatura do processo
+\item \( \Delta \)P: Diferença de Pressão
+\item a: Coeficiente de compensação de temperatura no fluído
+\item tZERO = Temperatura de Calibração do sensor
+\item g: Aceleração da gravidade
+\item h: Distância entre os pontos de medição
+\item \( \alpha \): Coeficiente de dilatação do material da estrutura
+\item tMED: Temperatura de medição nos pontos de medição
+\end{itemize}
+
+Dada tal necessidade adotou-se ao projeto o sensor MPX5700DP para medição de pressão sua especificações elétricas são:
+
+\begin{itemize}
+  \item Faixa de pressão operacional: 15kPa a 700kPa (0.15 ~ 6.9 atm);
+  \item Tensão de alimentação: 5V;
+  \item Nº de Pinos: 6;
+  \item Pinos úteis: 3;
+  \item Precisão: V/P: 6.4mV/kPa;
+  \item Corrente de suprimento 7mA;
+  \item Faixa de temperatura de operação: -40ºC a + 125ºC;
+  \item Dimensões (CxLxA): ~29x37x8mm;
+\end{itemize}
+
 \subsubsection{Medição de Volume}
 
-Tal componente utiliza sinais ultrassônicos para determinar a distância entre o sensor e um determinado obstáculo. De modo que no projeto em questão, será responsável por determinar a distância entre o sensor e o nível de açúcar presente na válvula, aferindo assim a quantidade de açúcar ali presente e retornando um dado para o servidor. Apresenta a seguinte tabela de especificações:
+Tal componente utiliza sinais ultrassônicos para determinar a distância entre o sensor e um determinado obstáculo. De modo que no projeto em questão, será responsável por determinar a distância entre o sensor e o nível de açúcar presente na válvula, aferindo assim a quantidade de açúcar ali presente e retornando um dado para o servidor. Apresenta a seguinte tabela de especificações: \nocite{28BYJ-48}
 
 \begin{table}[h]
 \centering
@@ -163,11 +190,11 @@ Dimensão                                     & 45-20-15 mm                     
 	\label{sensor1}
 \end{figure}
 
-Assim como ilustrado pela imagem acima o componente possui 4 pinos (Vcc, Trigger, Echo, GND), onde serão conectados de acordo com as especificações técnicas ditas anteriormente.
+Assim como ilustrado pela imagem acima \nocite{MCP4725} o componente possui 4 pinos (Vcc, Trigger, Echo, GND), onde serão conectados de acordo com as especificações técnicas ditas anteriormente.
 
 \subsubsection{Medição de pH}
 
-Com relação a especificação da medição de pH, torna-se necessário o uso do kit SKU: SEN0161 que é um kit integrado com um indicador de alimentação, um conector BNC e interface do sensor PH2.0. Segue abaixo a especificação:
+  Com relação a especificação da medição de pH, torna-se necessário o uso do kit SKU: SEN0161 que é um kit integrado com um indicador de alimentação, um conector BNC e interface do sensor PH2.0. Segue abaixo a especificação: \nocite{HC-SR04}
 
 \begin{itemize}
   \item Potência do módulo: 5.00V
@@ -200,7 +227,7 @@ Calibração do Kit:
 
 \subsubsection{Válvula de Liberação de açúcar}
 
-Para realizar a liberação de açúcar em tempos contínuos será utilizado um motor de passos para habilitar o despejo de açúcar na função de válvula. Para isso foi escolhido o componente Motor de Passo 28BYJ-48 + Driver ULN2003. Tal componente utiliza conversão de tensão em movimentos rotacionais, de modo a codificar o mesmo de modo a parar em posições específicas. De modo que este elemento será utilizado para o controle da válvula de depósito de açúcar, que quando acionado dá-se o passo necessário para liberação da quantidade de açúcar necessária para dentro do Biorreator. Já o Driver, é um sistema vendido juntamente ao motor, qual permite tal codificação de controle. Observa-se as seguintes especificações:
+Para realizar a liberação de açúcar em tempos contínuos será utilizado um motor de passos para habilitar o despejo de açúcar na função de válvula. Para isso foi escolhido o componente Motor de Passo 28BYJ-48 + Driver ULN2003. Tal componente utiliza conversão de \nocite{ADS1115} tensão em movimentos rotacionais, de modo a codificar o mesmo de modo a parar em posições específicas. De modo que este elemento será utilizado para o controle da válvula de depósito de açúcar, que quando acionado dá-se o passo necessário para liberação da quantidade de açúcar necessária para dentro do Biorreator. Já o Driver, é um sistema vendido juntamente ao motor, qual permite tal codificação de controle. Observa-se as seguintes especificações: \nocite{SEN0161}
 
 \begin{table}[h]
 \centering
@@ -229,7 +256,7 @@ Peso                    & 40 g       \\ \hline
 
 \subsubsection{Conversor A/D ADS1115}
 
-Tal componente realiza a conversão de tensão Analógica para Digital. Onde, na aplicação em estudo, será responsável por receber os sinais dos sensores em tensão analógica, converter para digital e encaminhar para o microcontrolador \textit{Raspberry}. Observa-se as seguintes especificações:
+Tal componente realiza a conversão de tensão Analógica para Digital. Onde, na aplicação em estudo, será responsável por receber os sinais dos sensores em tensão analógica, converter para digital e encaminhar para o microcontrolador \textit{Raspberry}. Observa-se as seguintes especificações: \nocite{MPX5700}
 
 \begin{table}[h]
 \centering
@@ -255,7 +282,7 @@ Dimensões                  & 2 x 1.5 x 0.4 mm \\ \hline
 
 \subsubsection{Conversor D/A MCP4725}
 
-Tal componente realiza a conversão de tensão Digital para Analógico. Onde, na aplicação em estudo, será responsável por converter os sinais do cliente/usuário lançados pelo app em tensão digital, quais passam pelo servidor  microcontrolador \textit{Raspberry}, chegam no conversor em questão e são encaminhados para os Atuadores. Observa-se as seguintes especificações:
+Tal componente realiza a conversão de tensão Digital para Analógico. Onde, na aplicação em estudo, será responsável por converter os sinais do cliente/usuário lançados pelo app em tensão digital, quais passam pelo servidor  microcontrolador \textit{Raspberry}, chegam no conversor em questão e são encaminhados para os Atuadores. Observa-se as seguintes especificações:\nocite{ds18b20}
 
 \begin{table}[h]
 \centering
@@ -400,9 +427,9 @@ As figuras abaixo ilustram a modelagem realizada para ter como ponto de partida 
 
 \begin{figure}[h]
 	\centering
-	\includegraphics[keepaspectratio=true,scale=0.3]{figuras/catia.eps}
+	\includegraphics[keepaspectratio=true,scale=0.5]{figuras/catia1.eps}
 	\caption{Biorreator modelado no CATIA - Posição 1}
-	\label{catia}
+	\label{catia1}
 \end{figure}
 
 \begin{figure}[h]
@@ -414,22 +441,82 @@ As figuras abaixo ilustram a modelagem realizada para ter como ponto de partida 
 
 A modelagem será feita com possíveis correções entre o ponto de controle 1 e 2, para então ser utilizado um software para simulação térmica do biorreator no  \textit{ANSYS}.
 
+\subsubsection{Eixo}
+
+Eixos são elementos que transmitem potência ou movimento. Um projeto de eixo visa atender a critérios de rigidez e deflexão, de resistência estática e à fadiga, além de uma análise de suas velocidades críticas. \cite{shigley2005projeto}
+
+O critério de rigidez visa atender uma inclinação máxima que o eixo possa ter na região dos mancais. Essa inclinação máxima depende dos tipos de rolamentos empregado. Para atender os critérios de resistência existem cinco critérios de falha mais comuns e são eles: Langer, Sodeberg, Goodman, DE-Gerber e ASME-elíptico. A Figura 1 mostra as curvas desses quatro critérios em função das tensões estáticas (\( \sigma \)e) e alternadas (\( \sigma \)a) atuando no eixo. \cite{shigley2005projeto}
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[keepaspectratio=true,scale=0.5]{figuras/eixo.eps}
+	\caption{Critérios de falha em fadiga \cite{shigley2005projeto}.}
+	\label{eixo}
+\end{figure}
+
+Dentre os materiais utilizados para fabricação de eixos, os aços são os materiais mais comuns. Isso se deve ao fato de possuírem um bom módulo de Young, o que se reflete diretamente numa melhora na questão de rigidez. Aços carbono SAE 1020-1050 são escolhas comum, porém quando as solicitações de resistência são muito elevadas alguns aços ligas podem ser utilizados como os SAE 3140, 4140-50, 4340. \cite{shigley2005projeto} Para aplicações em casos especiais, como o de atmosfera corrosiva, pode-se usar também os aços inoxidáveis.  \cite{norton2013projeto}.
+
+O material de eixo a ser adotado para esse projeto é o aço inoxidável 304, por sua aplicabilidade em fermentações com risco de contaminação minimizados e também por conseguir atender os critérios de rigidez e resistência. O critério de resistência a fadiga a ser adotado é o critério de DE-Gerber por ser um critério menos conservador e acarretar em um eixo com um diâmetro menor.
+
+\subsubsection{Rotor}
+
+As pás do rotor serão construídas em material aço inox 304. As especificações para o projeto visa que o impelidor tenha aplicações em velocidade baixa a média, para misturas de baixa e média viscosidade. Os rotores que se inserem nesse perfil seriam rotores de pá cruzada, pá reta, pá pivotante dentre outras.
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[keepaspectratio=true,scale=0.6]{figuras/pa.eps}
+	\caption{Rotor de pá cruzada}
+	\label{pa}
+\end{figure}
+
+O aço inoxidável 304 é classificado como aço inoxidável austenítico (aços não magnéticos), e possui características que enfatizam no uso para equipamentos na indústria química, depósitos de cerveja, tanques de fermentação, indústria farmacêutica dentre outras, sendo este aço com excelente aspecto para soldabilidade e estampabilidade \cite{kloeckner}.
+
+\subsubsection{Flambagem}
+
+As colunas que sustentam o biorreator sofrem com carregamentos axiais de compressão e podem, portanto, falhar por flambagem. A flambagem depende de diversos fatores, tais como o índice de esbeltez (Sr) das colunas e de suas respectivas condições de contorno. \cite{norton2013projeto}.
+
+O valor do índice de esbeltez é responsável por caracterizar a coluna em coluna curta, a qual essa falhará por compressão, ou nas chamadas colunas longas, onde essa falhará por flambagem. O Sr depende do comprimento (l) da coluna e de propriedades de sua seção transversal, como a área (A) e o menor momento de inércia da seção transversal (I) . O índice de esbeltez é calculado a partir da equação 1. \cite{norton2013projeto}.
+
+\[Sr = 1/\sqrt{\frac{I}{A}}\]
+
+A Figura \ref{solda} mostra diversas condições de contorno e as curvas de deflexão da coluna para cada caso.
+
+\begin{figure}[h]
+ \centering
+ \includegraphics[keepaspectratio=true,scale=0.5]{figuras/solda.eps}
+ \caption{Condições de contorno e curvas de deflexão.}
+ \label{solda}
+\end{figure}
+
+\subsubsection{Soldagem}
+
+Dentre os processos de soldagem mais difundidos na indústria, estão a soldagem a arco, soldagem a gás, soldagem por brasagem, soldagem por resistência e soldagem por laser. Para a soldagem aplicada no biorreator, devido a especificação do uso de aço inoxidável, será empregada a técnica de soldagem a arco. Este processo caracteriza-se pela participação do material base na fusão que constituirá a solda \cite{chiaverini1986tecnologia}.
+
+O processo de soldagem que possibilita soldar a maioria dos metais e ligas, como, aços comuns, aços especiais (caso do aço inoxidável), alumínio, magnésio, cobre dentre outros é conhecido como processo de soldagem a arco com proteção de gás argônio, também chamado de TIG, pertinente ao uso de um eletrodo de tungstênio não consumível. O tungstênio possui a característica de suportar alta intensidade de corrente o que viabiliza o uso para obter grande quantidade de calor em uma área concentrada \cite{chiaverini1986tecnologia}.
+
+\begin{figure}[h]
+ \centering
+ \includegraphics[keepaspectratio=true,scale=0.5]{figuras/contorno.eps}
+ \caption{Soldagem por arco com proteção de gás argônio}
+ \label{contorno}
+\end{figure}
+
 \subsection{Processos Termoquímicos}
 
-A temperatura dentro do biorreator não possui uniformidade em todas as regiões, uma vez que o calor provocado pela fermentação não ocorre a uma taxa constante. Dessa forma, torna-se necessário o uso de múltiplos sensores de temperatura, para um monitoramento mais preciso (SILVEIRA, 2009). Uma das características do biorreator proposto é a variação da temperatura em uma faixa de 0 a 100ºC com controle automático PID no aquecimento. Os sistemas de resfriamento e aquecimento serão separados, uma vez que o resfriamento só ocorrerá ao final da reação com a finalidade de resfriar o mosto para etapas posteriores do processo, ou como medida de segurança para o caso de superaquecimento do biorreator.
+A temperatura dentro do biorreator não possui uniformidade em todas as regiões, uma vez que o calor provocado pela fermentação não ocorre a uma taxa constante. Dessa forma, torna-se necessário o uso de múltiplos sensores de temperatura, para um monitoramento mais preciso \cite{silveira2009analise}. Uma das características do biorreator proposto é a variação da temperatura em uma faixa de 0 a 100ºC com controle automático PID no aquecimento. Os sistemas de resfriamento e aquecimento serão separados, uma vez que o resfriamento só ocorrerá ao final da reação com a finalidade de resfriar o mosto para etapas posteriores do processo, ou como medida de segurança para o caso de superaquecimento do biorreator.
 
 \subsubsection{Sistema de resfriamento}
 
-O ciclo de refrigeração é definido como uma região onde o fluido refrigerante circula, permutando em líquido e vapor de forma que viabilize a transferência de calor de um objeto onde ocorre a evaporação, processo que absorve calor, com baixa pressão e temperatura e a condensação, situação a qual rejeita calor, com alta pressão e temperatura. A temperatura dentro do cilindro do biorreator não possui uniformidade em todas as regiões, uma vez que o calor provocado pela fermentação não ocorre a uma taxa constante. Dessa forma, torna-se necessário o uso de múltiplos sensores de temperatura, para um monitoramento mais preciso (SILVEIRA, 2009).
+O ciclo de refrigeração é definido como uma região onde o fluido refrigerante circula, permutando em líquido e vapor de forma que viabilize a transferência de calor de um objeto onde ocorre a evaporação, processo que absorve calor, com baixa pressão e temperatura e a condensação, situação a qual rejeita calor, com alta pressão e temperatura. A temperatura dentro do cilindro do biorreator não possui uniformidade em todas as regiões, uma vez que o calor provocado pela fermentação não ocorre a uma taxa constante. Dessa forma, torna-se necessário o uso de múltiplos sensores de temperatura, para um monitoramento mais preciso \cite{silveira2009analise}.
 
-Segundo MCKETTA (1992) os tipos de sistemas de resfriamento estão em escala crescente a seguir
+Segundo \cite{mcketta1991heat} os tipos de sistemas de resfriamento estão em escala crescente a seguir
 
 \textbf{Jaqueta Simples:} A jaqueta simples, ou camisa simples, possui de 2 a 3 polegadas de espaço anular na qual o fluido percorre lentamente. Ele é voltado para aplicações com baixa necessidade de transferência de calor.
 
 \begin{figure}[h]
 	\centering
 	\includegraphics[keepaspectratio=true,scale=0.4]{figuras/jaqueta.eps}
-	\caption{Jaqueta simples - adaptado de SILVEIRA, 2009}
+	\caption{Jaqueta simples \cite{silveira2009analise} }
 	\label{jaqueta}
 \end{figure}
 
@@ -438,7 +525,7 @@ Segundo MCKETTA (1992) os tipos de sistemas de resfriamento estão em escala cre
 \begin{figure}[h]
 	\centering
 	\includegraphics[keepaspectratio=true,scale=0.6]{figuras/jaqueta2.eps}
-	\caption{Imagem em corte de jaqueta com defletores SILVEIRA, 2009}
+	\caption{Imagem em corte de jaqueta com defletores\cite{silveira2009analise}}
 	\label{jaqueta2}
 \end{figure}
 
@@ -460,7 +547,7 @@ Segundo MCKETTA (1992) os tipos de sistemas de resfriamento estão em escala cre
 	\label{jaqueta4}
 \end{figure}
 
-\textbf{Chapa integral ou jaqueta com serpentina tipo painel:} Esse tipo de serpentinas possuem a característica de transferir calor com controle e efetividade, podem ser utilizados fluidos em altas temperaturas, são fabricadas em materiais acessíveis, entretanto, esse tipo de sistema é mais caro do que aqueles que possuem serpentina interna (MCKETTA,1992)
+\textbf{Chapa integral ou jaqueta com serpentina tipo painel:} Esse tipo de serpentinas possuem a característica de transferir calor com controle e efetividade, podem ser utilizados fluidos em altas temperaturas, são fabricadas em materiais acessíveis, entretanto, esse tipo de sistema é mais caro do que aqueles que possuem serpentina interna \cite{mcketta1991heat}
 
 \begin{figure}[h]
 	\centering
@@ -536,7 +623,7 @@ Em seguida ligá-lo a uma fonte de alimentação, figura \ref{radiador2}. O pre�
 
 A segunda seria comprar os elementos separados e uni-los. Ao se realizar um estudo mais detalhado de custos a alternativa mais econômica será escolhida.
 
-Baseando-se no uso de células \textit{Peltier} , a água em um reservatório será resfriada e esse líquido sob baixa temperatura será bombeado para que possa percorrer a serpentina que vai estar acompanhada do reator Um modelo simplificado deste sistema é mostrado na figura X:
+Baseando-se no uso de células \textit{Peltier} , a água em um reservatório será resfriada e esse líquido sob baixa temperatura será bombeado para que possa percorrer a serpentina que vai estar acompanhada do reator. Um modelo simplificado deste sistema é mostrado na figura \ref{resfriamento}:
 
 \begin{figure}[h]
 	\centering
@@ -581,7 +668,7 @@ Nas aplicações industriais, este tipo de sistema de aquecimento é mais utiliz
 
 O funcionamento do sistema de aquecimento consistirá na alimentação da resistência com corrente provinda do sistema de alimentação, para que a potência seja estabelecida e então o aquecimento aconteça. Para o controle da temperatura do fluido, o sistema de aquecimento trabalhará em conjunto com controle eletrônico na forma de controlador PID \textit{(Proporcional-Integral-Derivativo)}, que funciona como um controlador de temperatura.
 
- O controlador PID é integrado com um sensor de temperatura, desta forma ele calcula uma resposta de saída para a resistência, realizando assim o rampeamento da temperatura e por consequência seu controle. Os controladores PID servem para que não aconteça variação de temperatura e que a resistência mantenha o fluido em um temperatura constante. A Figura x ilustra um dos tipos de controladores PID.
+ O controlador PID é integrado com um sensor de temperatura, desta forma ele calcula uma resposta de saída para a resistência, realizando assim o rampeamento da temperatura e por consequência seu controle. Os controladores PID servem para que não aconteça variação de temperatura e que a resistência mantenha o fluido em um temperatura constante. A Figura \ref{pid} ilustra um dos tipos de controladores PID.
 
  \begin{figure}[h]
  	\centering

@@ -16,14 +16,35 @@ Este processo define as atividades que servirão de auxílio para gerenciar os r
 \item Identificar riscos do projeto através de reuniões, ferramentas e técnicas como \textit{brainstorm},  posteriormente documentando os mesmos.
 \item Listar todos os riscos identificados para os integrantes do projeto.
 \item Planejar soluções ou respostas para que os riscos identificados não impactem de forma abrupta o projeto.
-\item Realizar o gerenciamento dos riscos identificados na atividade anterior.
-\item Monitorar e controlar os riscos durante as reuniões presenciais do grupo para que os mesmos possam ser mitigados ou eliminados.
 \end{itemize}
 
 \section{Identificar Riscos}
 
 Com o intuito de facilitar a identificação dos riscos e o compartilhamento dos mesmos com toda a equipe, foi utilizada a técnica conhecida como brainstorming. Nesta técnica os membros discutem qualquer tipo de idéia a cerca de um determinado tema. A tabela abaixo representa os riscos identificados no projeto durante as reuniões:
 
+\begin{table}[h]
+\centering
+\caption{Tabela de riscos do projeto}
+\resizebox{\textwidth}{!} {
+\label{table6}
+\begin{tabular}{|l|l|l|l|}
+\hline
+\textbf{Identificação} & \textbf{Risco}                                                                               & \textbf{Descrição}                                                                                                                            & \textbf{Resposta}                                                                                                     \\ \hline
+R1                     & \begin{tabular}[c]{@{}l@{}}Não desenvolver parte \\ estrutural programada\end{tabular}       & \begin{tabular}[c]{@{}l@{}}Galpão não possuir equipamentos\\ para conformação mecânica\end{tabular}                                           & \begin{tabular}[c]{@{}l@{}}ELIMINAR - Procurar alternativas \\ com empresas da area\end{tabular}                      \\ \hline
+R2                     & \begin{tabular}[c]{@{}l@{}}Falha estrutural causada\\  por trincas e rachaduras\end{tabular} & Solda ou perfuração mal elaborada                                                                                                             & MITIGAR - Refazer soldas em tempo hábil                                                                               \\ \hline
+R3                     & Perda de propriedades mecânicas                                                              & Excesso de pressão não previsto                                                                                                               & ELIMINAR - Construir sistema de resfriamento                                                                          \\ \hline
+R4                     & Queima de resistência elétrica                                                               & \begin{tabular}[c]{@{}l@{}}Queima da resistência elétrica, impossibilitando \\ o aumento de temperatura\\  dentro do biorreator.\end{tabular} & \begin{tabular}[c]{@{}l@{}}MITIGAR - Adquirir resistência reserva \\ para substituição rápida\end{tabular}            \\ \hline
+R5                     & Integração PID e aquecimento                                                                 & \begin{tabular}[c]{@{}l@{}}Não integração entre o controlador PID\\  e o sistema de aquecimento\end{tabular}                                  & \begin{tabular}[c]{@{}l@{}}ACEITAR - Fazer ajustes manuais \\ de temperatura e controle de resistência\end{tabular}   \\ \hline
+R6                     & Superaquecimento do reator                                                                   & \begin{tabular}[c]{@{}l@{}}Temperatura do reator chegar\\  ao ponto de possível explosão \\ ou deformação  do material\end{tabular}           & \begin{tabular}[c]{@{}l@{}}ELIMINAR - Construir um sistema \\ de resfriamento parao reator\end{tabular}               \\ \hline
+R7                     & Queima do sistema de resfriamento                                                            & \begin{tabular}[c]{@{}l@{}}Queima do sistema de \\ resfriamento impedindo que o \\ sistema opere de forma correta\end{tabular}                & \begin{tabular}[c]{@{}l@{}}MITIGAR -Aquisição de bomba\\  reserva para substituição rápida\end{tabular}               \\ \hline
+R8                     & Falta de energia                                                                             & \begin{tabular}[c]{@{}l@{}}Falta de energia interrompendo\\  o processo de fermentação\end{tabular}                                           & \begin{tabular}[c]{@{}l@{}}ELIMINAR - Aquisição de \\ bateria para que a reação não\\  seja interrompida\end{tabular} \\ \hline
+R9                     & \begin{tabular}[c]{@{}l@{}}Atraso na entrega dos \\ sensores e atuadores\end{tabular}        & \begin{tabular}[c]{@{}l@{}}Atraso na entrega impossibilitando a\\  construção do controle monitoramento do projeto\end{tabular}               & \begin{tabular}[c]{@{}l@{}}MITIGAR - Comprar sensores \\ com preço mais alto e sem especificação.\end{tabular}        \\ \hline
+R10                    & Conversão A/D                                                                                & Conversão A/D não funcionar                                                                                                                   & \begin{tabular}[c]{@{}l@{}}ELIMINAR - Comunicação UART serial \\ com arduino\end{tabular}                             \\ \hline
+R11                    & Falha no processamento                                                                       & \begin{tabular}[c]{@{}l@{}}Raspberry não suportar o processamento \\ e requisições\end{tabular}                                               & \begin{tabular}[c]{@{}l@{}}ELIMINAR - Processamento de\\  dados na nuvem\end{tabular}                                 \\ \hline
+R12                    & Falha na medição de densidade                                                                & \begin{tabular}[c]{@{}l@{}}Os sensores não captarem a diferença de\\  pressão dentro do reator\end{tabular}                                   & \begin{tabular}[c]{@{}l@{}}ACEITAR - Fazer medição manual\\  com densímetro\end{tabular}                              \\ \hline
+\end{tabular}
+}
+\end{table}
 
 
 
