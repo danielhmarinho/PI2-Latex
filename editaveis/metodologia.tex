@@ -488,6 +488,65 @@ A Figura \ref{solda} mostra diversas condições de contorno e as curvas de defl
  \label{solda}
 \end{figure}
 
+\subsubsection{Dimensionamento do Motor do Impelidor}
+
+O tipo de impelidor usado, seu diâmetro, a frequência do agitador o diâmetro do tanque, a altura da coluna líquida, a existência ou não de chicanas e sua largura, as características do líquido (densidade, viscosidade) são, segundo SCHMIDELL(2011) alguns exemplos das variáveis que afetam a potência que se transfere a um líquido submetido a agitação.
+
+SCHMIDELL(2011) traz que uma estratégia  abordada para esse tipo de situação, consiste em lançar mão da análise dimensional, através da qual se busca juntar as variáveis em grupos dimensionais e, a seguir, obter as correlações entre esses adimensionais. Demonstrou-se que:
+
+\[P = N^3  \times Di^5 \times \rho \times Np\]
+\[NRe = (N \times Di^2 \times \rho)/\mu\]
+\[Np = f(NRe)\]
+
+Onde:
+\begin{itemize}
+	\item Np = Número de potência;
+	\item NRe = Número de Reynolds;
+	\item N = frequência do agitador (rps ou s-1);
+	\item \(\rho\) = Densidade do líquido (kg/m3);
+	\item P = Potência transmitida na agitação (W);
+	\item Di = diâmetro do impelidor (m);
+	\item \(\mu\) = Viscosidade do líquido (Kg/m \(\times\) s)
+\end{itemize}
+
+De acordo com o gráfico Np x NRe, figura \ref{reynolds}, determina-se o valor de o valor do número de potência:
+
+\begin{figure}[H]
+	\centering
+  \includegraphics[keepaspectratio=true,scale=0.6]{figuras/reynolds.eps}
+  \caption{  Número de potência \(\times\) Número de Reynolds. Fonte: SCHMIDELL,2011}
+  \label{reynolds}
+\end{figure}
+
+Para a se obter a viscosidade e a densidade do líquido, que é a mistura de caldo de cana mais as leveduras, foram realizados ensaios no laboratório de química do Galpão. Os ensaios foram realizados com o líquido na temperatura de 31 ºC, pois é essa a temperatura durante a fermentação. O ensaio com o viscosímetro permitiu encontrar o valor da viscosidade cinemática (\(\upsilon\)) e por meio da pesagem de um volume determinado do líquido em uma balança de precisão foi encontrado o valor da densidade (\(\rho\)). Para a realização destes ensaios considerou-se  que para cada 1 litro de caldo de cana usa-se 10 g de levedura.
+
+\begin{figure}[h]
+	\centering
+  \includegraphics[keepaspectratio=true,scale=0.5]{figuras/equipamentos.eps}
+  \caption{Equipamentos para medir viscosidade e densidade}
+  \label{equipamentos}
+\end{figure}
+
+O valor encontrado para densidade foi 1065,51 kg/m3 e o valor da viscosidade cinemática foi 2,879 cts. A partir da relação:
+\[\mu = \rho \times \upsilon\]
+
+Encontrou-se o valor da viscosidade dinâmica (\(\mu\)) igual a 2,9397 cp.
+Considerando que o impelidor é o modelo com pás planas, com diâmetro do impelidor igual a 155 mm, uma frequência de agitação de 150 Rpm que é a rotação usada em reatores de fermentação alcoólica (alguma referência), foi encontrada uma potência de aproximadamente 16 W.
+
+\begin{figure}[H]
+	\centering
+  \includegraphics[keepaspectratio=true,scale=0.5]{figuras/motor.eps}
+  \caption{Motor que será utilizado para agitação}
+  \label{motor}
+\end{figure}
+
+\begin{figure}[H]
+	\centering
+  \includegraphics[keepaspectratio=true,scale=0.5]{figuras/data.eps}
+  \caption{Datasheet do Motor que será utilizado para agitação}
+  \label{data}
+\end{figure}
+
 \subsubsection{Soldagem}
 
 Dentre os processos de soldagem mais difundidos na indústria, estão a soldagem a arco, soldagem a gás, soldagem por brasagem, soldagem por resistência e soldagem por laser. Para a soldagem aplicada no biorreator, devido a especificação do uso de aço inoxidável, será empregada a técnica de soldagem a arco. Este processo caracteriza-se pela participação do material base na fusão que constituirá a solda \cite{chiaverini1986tecnologia}.
@@ -559,8 +618,8 @@ Segundo \cite{mcketta1991heat} os tipos de sistemas de resfriamento estão em es
 Dos modelos de serpentina que serão estudados para ver qual se adequa melhor ao projeto, se tem 3 opções:
 
 \begin{itemize}
-  \item \textbf{Serpentina completamente dentro do reator:} Se escolhida essa opção o materialda serpentina será de aço inox, para evitar contaminação do mostro;
-  \item \textbf{Serpentina parcialmente dentro do reator:} A serpentina passaria por pontos específicos do reator, para diminuir consideravelmente o acúmulo de mostro nos enrolamentos da estrutura;
+  \item \textbf{Serpentina completamente dentro do reator:} Se escolhida essa opção o materialda serpentina será de aço inox, para evitar contaminação do mosto;
+  \item \textbf{Serpentina parcialmente dentro do reator:} A serpentina passaria por pontos específicos do reator, para diminuir consideravelmente o acúmulo de mosto nos enrolamentos da estrutura;
   \item \textbf{Serpentina completamente fora do reator, em volta da parte externa:} Nesse caso teria a necessidade de adicionar um material isolante em volta da serpentina para que não houvesse interferência do ambiente na troca de calor;
 \end{itemize}
 
@@ -728,3 +787,617 @@ O sistema integrado de software terá como arquitetura duas camadas de comunica�
 Para o servidor será utilizado um mecanismo de execução em Javascript, o NodeJS, que será responsável pelo serviço de \textit{REST}, que é uma abstração da arquitetura da \textit{World Wide Web} através de protocolos de comunicação \textit{HTTP} sendo aplicado à um web service fornecendo uma API para acesso do sistema de interface com o usuário. Como notação para transferência de dados será utilizado objetos \textit{JSON} para enviar as estruturas para o sistema de interface.
 
 O sistema de interface com usuários será focado para uso mobile então será utilizado o \textit{framework} \textit{ReactNavite}, este é um \textit{cross-platform} em \textit{Javascript} que será responsável por gerar aplicativos para plataformas \textit{Android e iOS}. O aplicativo terá como função comunicar com a \textit{API} para recepção de dados que serão mostrados em relatórios ou para enviar dados que serão responsáveis por emitir sinais junto aos atuadores.
+
+\section{Modelagem do Biorreator}
+
+\subsection{Sistema de Aquecimento}
+
+Um dos requisitos do projeto é que a temperatura varie de (0 a 100) ºC, com uso de uma resistência elétrica para aquecimento controlada por um controlador PID. Entretanto, segundo a avaliação realizada por De Sousa e Monteiro (2011) sobre perfil de reações de fermentação, a temperatura ideal para a operação das leveduras é de (25 a 30)ºC, sendo que temperaturas superiores ocasionam o enfraquecimento delas e favorece o surgimento de outros microorganismos inibidores de álcool, além de aumentar a perda de etanol por evaporação. Foi apontado ainda que temperaturas inferiores reduzem a atividade do fermento, diminuindo o rendimento do produto. Dessa forma,  foi modelado um sistema que varie de (25 a 40) ºC.
+
+O sistema de aquecimento é composto basicamente da resistência elétrica e do controlador PID, que acompanha um termostato e um relé de estado sólido.
+
+\begin{enumerate}
+	\item Resistência Elétrica \\
+	Uma vez que o biorreator é de uso genérico, ou seja, servirá para fermentar diversos tipos de mosto, não é possível definir a massa específica e densidade, já que tais parâmetros irão variar de acordo com o que será fermentado. Dessa forma, para os cálculos do dimensionamento da resistência será considerada uma densidade fixa que equivale à 18 ºBrix, valor mais propício para que a fermentação ocorra.
+
+	Das especificações do reator se tem:
+	\begin{itemize}
+		\item Volume útil: 15 L
+		\item Variação de temperatura: 15ºC
+		\item 18º Brix \(\sim\) 1.075,07 \(kg.m^{-3}\)
+	\end{itemize}
+
+A partir da equação 1 é possível calcular a massa do mosto:
+
+\[\rho = \frac{m}{v}\]
+
+Onde:
+
+\begin{itemize}
+	\item \(\rho\): densidade
+	\item m: massa
+	\item v: volume
+\end{itemize}
+
+\[m = 1.075,07 Kg.m^{-3} 0,015 m^3\]
+
+\[m = 16, 13 Kg\]
+
+A equação 2 representa o cálculo da transferência de calor, em que uma de suas variáveis é o calor específico do mosto. Nesse caso será considerado o da cana de açúcar, que é o mosto padrão em reações de fermentação. A temperatura inicial será considerada ambiente 25ºC.
+
+\[Q = m c \triangle T\]
+
+Onde:
+
+\begin{itemize}
+	\item Q: Quantidade de calor
+	\item m: massa [g]
+	\item c: calor específico [J/Kg ºC]
+	\item T: variação de temperatura
+\end{itemize}
+
+
+\[Q = 16,13 Kg \times 3,1J.Kg^{-1}K^{-1} \times (40 - 25)ºC\]
+\[Q= 750 W\]
+
+Assim, será necessário uma potência de 750 W. Comercialmente, não são produzidas resistências com tal potência, de forma que foi adquirido uma potência de 1000W (Figura \ref{resistencia}. Entretanto, como ela será controlada por PID, não haverá problemas da potência dela ser maior do que a dimensionada.
+
+\begin{figure}[h]
+ \centering
+ \includegraphics[keepaspectratio=true,scale=0.2]{figuras/resistencia.eps}
+ \caption{Resistência}
+ \label{resistencia}
+\end{figure}
+
+Esse formato de resistência foi escolhido para aumentar a área de contato com o fluido. As especificações dela são dadas a seguir:
+
+\begin{table}[h]
+\centering
+\caption{Especificações resistência}
+\label{esp-rest}
+\begin{tabular}{|l|c|}
+\hline
+Potência    & 1000W   \\ \hline
+Bitola      & 3/8     \\ \hline
+Comprimento & 25,5 cm \\ \hline
+\end{tabular}
+\end{table}
+
+\item Controlador PID \\
+A forma de controle PID consiste em controlar por meio Proporcional Integral Derivativo, que basicamente é atuar sobre um sistema baseado no ajuste do seu valor real (PV) até que este alcance e se mantenha em um valor desejado (\textit{setpoint} - SP). Para melhor entendimento será descrito cada uma dessas funções a seguir.
+
+\begin{itemize}
+	\item \textbf{Proporcional}: Neste componente o ajuste entre PV e SP ocorre de forma proporcional a diferença entre eles. Ou seja, a correção executada cresce à medida que a diferença entre o ponto real e o desejado cresce. Entretanto, isso pode gerar maiores oscilações no sistema, principalmente quando essa diferença entre os pontos for muito grande, de forma que se coloca em risco toda sua estabilidade.
+
+	\item \textbf{Integral}: O ajuste entre PV e SP ocorre de forma proporcional a diferença entre eles em relação ao tempo. Ou seja, essa diferença é somada termo a termo ao longo do tempo fazendo com que os valores real e desejado fiquem mais próximos.
+
+	\item \textbf{Derivativo}: O ajuste entre PV e SP ocorre de forma proporcional a taxa de variação da diferença entre eles. Ou seja, ela evita que ocorram oscilações quando essa diferença varia muito rápido.
+\end{itemize}
+
+Aplicando isso ao controle de um sistema térmico de aquecimento, o controlador PID atuaria em conjunto com a resistência elétrica, um sensor de temperatura e um relé. Sendo o sensor para verificação da temperatura do meio a fim de se obter o valor real dela (PV). E o relé para atuar em conjunto com o controlador, recebendo sinal para acionar a resistência através do controle de sua corrente elétrica.
+
+Dessa forma, o sensor verifica a temperatura do meio, o controlador afere a diferença entre ela e a temperatura que foi programada para ser atingida, e se elas tiverem diferença, é enviado o sinal para que o relé fique aberto e a resistência seja acionada. A medida que as temperaturas vão se aproximando, o relé interrompe a corrente da resistência, e é feita a verificação da temperatura, onde todo o processo se repete até que se atinja a temperatura desejada. Esse processo foi esquematizado na Figura \ref{processo}
+
+\begin{figure}[H]
+ \centering
+ \includegraphics[keepaspectratio=true,scale=0.4]{figuras/processo.eps}
+ \caption{Processor PID}
+ \label{processo}
+\end{figure}
+
+Nesse projeto foi adquirido um controlador PID, junto com relé de estado sólido e um termopar, que foi validado controlando o aquecimento de uma lâmpada (Figura \ref{controlador}).
+
+\begin{figure}[h]
+ \centering
+ \includegraphics[keepaspectratio=true,scale=0.2]{figuras/controlador.eps}
+ \caption{Controlador}
+ \label{controlador}
+\end{figure}
+
+\end{enumerate}
+
+\subsection{Sistema de Refrigeração}
+
+O sistema de refrigeração será composto por um reservatório abastecido com água da rede hidráulica convencional, onde, dentro de um sistema hermeticamente e termicamente isolado, será refrigerado por pastilhas peltier, mostrado na Figura \ref{refriferacao}.
+
+\begin{figure}[h]
+ \centering
+ \includegraphics[keepaspectratio=true,scale=0.6]{figuras/refrigeracao.eps}
+ \caption{Sistema de refrigeração}
+ \label{refrigeracao}
+\end{figure}
+
+
+Este sistema será composto por cinco subsistemas, os quais serão descritos abaixo:
+
+\begin{enumerate}
+	\item \textbf{Pastilhas peltier + cooler}: Este subsistema será responsável pela refrigeração do reservatório gelado, serão instaladas duas placas peltiers ligadas a coolers e dissipadores que espalharão o ar gelado criado pelo lado frio da pastilha. As pastilhas peltier apresentaram eficiência de 10º C a menos em relação à temperatura ambiente, chegando a aproximadamente 6º C no lado frio. A Figura \ref{placa} mostra a formação de gelo no lado gelado da peltier.
+
+	\begin{figure}[h]
+	 \centering
+	 \includegraphics[keepaspectratio=true,scale=0.5]{figuras/placa.eps}
+	 \caption{Placa peltier funcionando}
+	 \label{placa}
+	\end{figure}
+
+	\item \textbf{Reservatório gelado}:	O reservatório gelado será feito com uma caixa térmica capaz de manter a temperatura gelada em seu interior. Dentro da caixa se encontrará uma serpentina de alumínio ou silicone que passará a água captada pela torneira, desta forma, a torneira será ligada no começo da reação e a água no interior da serpentina será resfriada pelo reservatório com as placas peltier, onde, a primeira vazão de água entrará na serpentina de resfriamento a uma temperatura menor do que a temperatura da água ambiente, auxiliando o resfriamento do líquido contido dentro do reator.
+
+	\item \textbf{Bomba}: A bomba hidráulica terá a função de arrastar a água do reservatório gelado para dentro da serpentina que está no reator. A bomba também será responsável pela elevação da água desde que o fluxo entrará na parte de cima da tampa do reator seguindo diretamente para a extremidade inferior da serpentina que seguirá pelos tubos e sairá pela parte de cima, exemplificado na Figura X1. O equipamento utilizado será uma bomba DC 12 V, marca Javtop e modelo JT-600, para circulação de água quente ou fria. Sua vazão média é de 300 L/h, essa vazão será utilizada nos cálculos posteriores. A bomba utilizada é mostrada na Figura \ref{bomba}.
+
+	\begin{figure}[h]
+	 \centering
+	 \includegraphics[keepaspectratio=true,scale=0.5]{figuras/bomba.eps}
+	 \caption{Bomba Hidráulica DC}
+	 \label{bomba}
+	\end{figure}
+
+	\item \textbf{Serpentina de resfriamento}: A serpentina, principal componente deste sistema, foi desenvolvida de acordo com os parâmetros métricos do reator. Os valores de diâmetro do tubo assim como as voltas dentro do reator foram selecionado a partir do produto disponível no mercado, considerando um passe de 1 cm em cada volta para que houvesse o fluxo de líquido com o impelidor. O diâmetro externo da serpentina foi escolhido considerando uma distância do impelidor para que não houvesse colisão entre as duas peças. A Figura \ref{serpentina2} mostra o esquema da serpentina assim como suas medidas.
+
+	\begin{figure}[h]
+	 \centering
+	 \includegraphics[keepaspectratio=true,scale=0.7]{figuras/serpentina2.eps}
+	 \caption{Medidas da Serpentina}
+	 \label{serpentina2}
+	\end{figure}
+
+Para o cálculo do tempo de resfriamento foi considerado o caso em que a água entre na serpentina em sua temperatura ambiente e o mosto em seu valor máximo de temperatura, observando o pior caso de resfriamento. Considerando o sistema acima, os seguintes parâmetros foram computados:
+
+\begin{table}[h]
+\centering
+\begin{tabular}{|l|c|}
+\hline
+\multicolumn{1}{|c|}{Parâmetro}                     & Medida                                                        \\ \hline
+Volume do mosto (V)                                 & 15 L                                                          \\ \hline
+Diâmetro interno do tubo (d1)                       & 1 cm                                                          \\ \hline
+Fluxo de água (W)                                   & 0,083 L \(s^{-1}\)									                          \\ \hline
+Comprimento da serpentina submersa (L1)             & 12 m                                                          \\ \hline
+Temperatura inicial do mosto (t1)                   & 60º C                                                         \\ \hline
+Temperatura final desejada do mosto (t2)            & 30º C                                                         \\ \hline
+Calor específico do mosto (Cm)                      & 3100 J \(kg^{-1} K^{-1}\) 																		\\ \hline
+Densidade do mosto (D)                              & 1,065 g \(cm^{3-1}\)                      									  \\ \hline
+Calor específico da água (Cj)                       & 4187 J \(kg^{-1}\) \(K^{-1}\) 																		\\ \hline
+Regime do fluxo                                     & Intermitente                                                  \\ \hline
+Coeficiente Global de transferência de calor (U) ** & 500 W \(m^{2-1} k^{-1}\)      																		\\ \hline
+Densidade da água de resfriamento                   & 0,998 g \(cm^{3-1}\)                        									\\ \hline
+Temperatura de entrada da água (T)                  & 27 ºC                                                         \\ \hline
+\end{tabular}
+\caption{Tempo de resfriamento}
+\label{resfriamento}
+\end{table}
+
+** O valor do coeficiente global foi considerado a partir de coeficientes globais gerais encontrados na literatura. Para este trabalho foi considerado o seguinte coeficiente: Líquido Forçado (fluxo) Água – Líquido livre de convecção : 500 - 1500 W/m2K (serpentina de resfriamento- espiral).
+
+Calculando a massa do mosto:
+\[m =  D \cdot V = 1,065 \cdot 15000 = 15,98 Kg\]
+
+O calor que terá que ser removido pela serpentina:
+\[Q = m \cdot Cm \cdot (t2 - t1) = 15,98 \cdot 3100 \cdot (30-60) = -1488,14 KJ\]
+
+A área da serpentina:
+\[A = \pi \dot d1 \cdot L1 = \pi \cdot 0,01 \cdot 12 = 0,377 m^2\]
+
+Desta forma, o tempo estimado de resfriamento, a partir dos dados anteriores e considerando um regime intermitente será dado pela seguinte fórmula:
+
+\[t = \frac{\ln\frac{(T-t_{1})}{(T-t_{2})}}{\frac{C_{j}\cdot W}{C_{m}\cdot m}}\cdot\frac{\exp(\frac{U\cdot A}{C_{j}\cdot W})}{\exp(\frac{U\cdot A}{C_{j}\cdot W}) - 1}\cdot\frac{1}{60s} = \frac{\ln\frac{(27-60)}{(27-30}}{\frac{4187\cdot 0,083}{3100\cdot 15,98}}\cdot\frac{\exp(\frac{500\cdot 0,377}{4187\cdot 0,083})}{\exp(\frac{500\cdot 0,377}{4187\cdot 0,083}) - 1}\cdot\frac{1}{60s} \cong 13,6 \min\]
+
+Assim, com essas condições, o mosto demoraria cerca de 14 minutos para resfriar de 60º para 30º C com uma serpentina imersa no líquido. Os cálculos são aproximados e alguns erros estão embutidos, desta forma, trabalharemos com 15 min.
+
+Por fim, calcula-se a quantidade de água necessária para um ciclo de resfriamento de cerca de 30 ºC:
+
+\[V_{necessário}=W.t.60\]
+\[V_{necessário}=0,083  \cdot 15  \cdot 60 \cong  75 L\]
+
+Portanto, para este sistema de resfriamento, 75 L de água a temperatura ambiente serão necessários para abaixar a temperatura em 30 ºC em aproximadamente 15 minutos.
+
+	\item \textbf{Reservatório de água pós serpentina}: O reservatório de água que recolherá a água após passar por dentro da serpentina servirá para que o processo não perca eficiência, de forma a captar a água quente advinda da serpentina e guardá-la até a próxima reação. Este tanque será ligado a torneira, ligação essa que ficará fechada durante a fermentação, desta forma, quando a reação acabar, pode-se abrir a ligação e deixar o escoamento acontecer tanto por meio deste reservatório quanto da rede hidráulica para o recomeço de uma nova reação. Este reservatório permite também que se utilize somente a água da rede hidráulica.
+
+\end{enumerate}
+
+\subsection{Dimensionamento da Pressão Interna}
+
+Durante o processo de fermentação ocorre a formação de gás carbônico, e devido ao fato do reator ser vedado é importante que se calcule a quantidade de gás formado bem como a pressão interna dele.
+
+Para o cálculo foram feitas algumas considerações:
+
+\begin{itemize}
+	\item temperatura constante
+	\item não há dissolução de \(CO_{2}\) na fase líquida
+	\item não há transferência de massa entre a fase líquida e gasosa
+	\item \(CO_{2}\) considerado gás ideal
+	\item Conversão de 100\% do açúcar em álcool
+	\item Teor de sólidos solúveis do mosto = 18ºBrix
+	\item mosto obtido a partir caldo de cana
+\end{itemize}
+
+Primeiramente foi feito o cálculo considerando que não haveria escape de gás a fim de verificar a necessidade do sistema de captação de \(CO_{2}\). A tabela abaixo mostra alguns dados iniciais para os cálculos:
+
+\begin{table}[h]
+\centering
+\begin{tabular}{|l|l|}
+\hline
+\multicolumn{2}{|l|}{Dados} \\ \hline
+\(\rho_{cana}[gL^{-1}]\)             &    1041,3          \\ \hline
+\(V_{mosto}\)             &      20,85        \\ \hline
+\(V_{gás}\)             &     8,3         \\ \hline
+T [K]             &       303       \\ \hline
+R\(atm.L.mol^{-1}.K^{-1}\)             &  0,082            \\ \hline
+\(mm_{CO_2}g.mol^{-1}\)             &     44         \\ \hline
+\(mm_{glicose}g.mol^{-1}\)         &    180          \\ \hline
+\end{tabular}
+\caption{Dados iniciais}
+\label{dados-iniciais}
+\end{table}
+
+
+A densidade do caldo da cana foi calculado experimentalmente, e a partir dela, é possível saber a massa de mosto:
+
+\[m=\rho.V\]
+\[m = 1041,3 \times 20,85\]
+\[m = 21.711,1 g\]
+
+A definição de ºBrix é que a cada 1g de açúcar em 100g de mosto, se eleva 1ºBrix. Dessa forma é possível calcular a massa de açúcar que será consumida durante a reação, sabendo que para conversão de 100\% seriam consumidos o equivalente à 18ºBrix. Dessa forma se tem a relação:
+
+\[18g \,de\, açúcar \rightarrow 100g \,de\, mosto\]
+
+\[3.907,99 g \,de\, açúcar \rightarrow 21.711,1 g \,de\, mosto\]
+
+Para saber a massa de gás que é produzida, é necessário fazer a relação estequiométrica da reação de fermentação:
+
+\[C_{6}H_{12}O_{6}\rightarrow 2CO_{2}\]
+
+Ou seja, para cada mol de açúcar consumido são produzidos 2 mol de gás carbônico. Assim, pode se relacionar as massas molares da glicose e do dióxido de carbono:
+
+\[180 g \,de\, C6H12O6 \rightarrow (2x44) g \,de\, CO_{2}\]
+
+\[3.907g \,de\, C6H12O6 \rightarrow 1.910,58 g \,de\, (CO_{2}\]
+
+Desta forma, é possível calcular a pressão a partir da lei dos gases:
+\[PV = nRT\]
+
+Onde:
+
+\begin{itemize}
+	\item P: pressão
+	\item V: volume
+	\item n: número de mol
+	\item R: Constante universal dos gases
+	\item T: temperatura
+\end{itemize}
+
+O número de mol pode ser dado em função da massa e da massa molar do gás:
+
+\[P = \frac{m.R.T}{mm.V}\]
+
+\[P = \frac{1910,58 .0,082.301 }{44.8,3}\]
+
+\[P = 129,13 atm\]
+
+
+Apesar de elevado, tal valor é justificado pelo volume de mosto, e principalmente por se considerar o caso extremo em que toda açúcar seria fermentada, sendo que em casos reais cerca de apenas (40 a 50)\% são realmente convertidos. É importante ressaltar também que esse é o valor é considerado para o reator sem escape de gás e ocupando apenas o volume não ocupado pelo mosto. Ainda sim, foi avaliado que é necessário uma válvula de escape para o gás, e devido ao grande aumento pressão que ocorre na reação foi desconsiderado o sistema para captar \(CO_{2}\), uma vez que por questão de segurança é mais viável que apenas seja feito um sistema de escape e não de captação.
+
+A segunda abordagem foi feita considerando a área da secção transversal para escape do gás sem atrito, onde foi calculada a taxa de formação e de saída dele, e a partir disso a pressão que permanece dentro do reator.
+
+Essa modelagem foi feita baseada no estudo de Romanholi et al. (2009)  que calculou a pressão remanescente em um fermentador variando o tamanho do orifício de saída de o volume de mosto. Primeiramente, é feito o balanço de massa para o \(CO_{2}\) considerando apenas o volume vazio, sem mosto.
+
+\[\frac{dn_{CO_2}}{dt} = r_{CO_2}\cdot V_{caldo}-G\]
+
+Onde:
+
+\begin{itemize}
+	\item \(r_{CO_2}\) : velocidade de formação do  \(CO_{2}\) \([mol.L^{-1} \cdot h^{-1}]\)
+	\item G': vazão de saída de gás \([mol.h^{-1}]\)
+\end{itemize}
+
+Sendo que essa vazão é dada em função do fluxo mássico (G), da área do orifício de saída \((A_{orifício})\), e da pressão interna e externa, obtidos a partir do balanço de energia e massa:
+
+\[G = P_{0}.\sqrt{\frac{K.mm}{R.T_{0}}}.\frac{M_{1}}{(1+\frac{K-1}{2}.M_1^2)^{\frac{K+1}{2(k-1)}}}[ \frac{Kg}{m^{2}.s}]\]
+
+Em que ‘k’ é relação entre os calores específicos do fluido nas fases líquida e gasosa, para o \(CO_{2}\)  é  1,288. \(M_{1}\) é o número de Mach na garganta do orifício, que apresenta valor unitário uma vez que o fluxo de saída não é subsônico. \(P_{0}\) é a pressão inicial dentro do reator, considerada como 1 atm. E o diâmetro de saída de 23 mm. Assim, a vazão de saída de gás é dada por:
+
+\[G'=\frac{G.A_{orifício}}{mm}\]
+
+Substituindo todos os valores, se tem:
+
+\[G = 89,69 [g.m^{-2}.s^{-1}]\]
+\[G’ = 0,00085 [mol.s^{-1}]\]
+
+A partir da lei universal dos gases ideais se tem:
+
+\[PV = nRT\]
+
+Diferenciando essa equação, se tem dois parâmetros que variam em função do tempo, a pressão e o número de mols, já que a medida que o açúcar vai sendo  consumido, o número de mols de gás carbônico vai aumentando conforme ele vai sendo produzido, e por ser um sistema com volume fixo, a pressão tende a aumentar também. Dessa forma, a variação da pressão interna no reator pode ser obtida a partir da equação diferencial abaixo:
+
+\[\frac{dP}{dt}=\frac{dn}{dt}.\frac{R.T}{V_{gás}}\]
+
+Uma vez que uma equação diferencial depende da outra, elas foram resolvidas simultaneamente de forma numérica a partir do método Runge-Kutta de 4ª ordem utilizando Microsoft Excel. Foram simulados valores considerando o tempo de duração de 24h. Dos valores obtidos, foram selecionados e os 15 maiores valores da pressão formada e da pressão que sai do reator para compilação gráfica e análise, sendo que os maiores valores são referentes aos maiores tempo de reação.
+
+\begin{figure}[H]
+ \centering
+ \includegraphics[keepaspectratio=true,scale=0.5]{figuras/pressao.eps}
+ \caption{Comportamento da Pressão}
+ \label{pressao}
+\end{figure}
+
+Uma vez que uma equação diferencial depende da outra, elas foram resolvidas simultaneamente de forma numérica a partir do método Runge-Kutta de 4ª ordem utilizando Microsoft Excel. Foram simulados valores considerando o tempo de duração de 24h. Dos valores obtidos, foram selecionados e os 15 maiores valores da pressão formada e da pressão que sai do reator para compilação gráfica e análise, sendo que os maiores valores são referentes aos maiores tempo de reação.
+
+\begin{figure}[h]
+ \centering
+ \includegraphics[keepaspectratio=true,scale=0.5]{figuras/pressao2.eps}
+ \caption{Diferença da Pressão}
+ \label{pressao2}
+\end{figure}
+
+A partir dos valores obtidos, é possível observar que a pressão interna tende a se estabilizar e assim, é possível afirmar que o diâmetro do orifício de saída do gás, bem como o volume disponível para formação do \(CO_{2}\)  satisfazem as condições de reação.
+
+\subsection{Circuito elétrico do Sistema}
+
+O circuito foi projetado levando em conta os componentes do sistema de aquecimento e refrigeração. O sistema de aquecimento é alimentado em 220V corrente alternada, enquanto o de refrigeração é alimentado em 12V, de forma que foi colocado uma fonte chaveada para fornecer essa tensão necessária. A figura a seguir representa o esquema do circuito, onde D1, D2 e D3 são disjuntores.
+
+\begin{figure}[h]
+ \centering
+ \includegraphics[keepaspectratio=true,scale=0.4]{figuras/circuito.eps}
+ \caption{Circuito Elétrico do Sistema}
+ \label{circuito}
+\end{figure}
+
+\subsection{Fabricação estrutural e componentes}
+
+As dimensões do biorreator foram determinadas de acordo com a requisitos impostos a partir do subgrupo de eletrônica, de energia e para melhoria de alguns parâmetros do sistema de agitação.
+
+Para determinação da altura do biorreator foi levado em consideração que os sensores de pressão, conforme passado pelo subgrupo da eletrônica, deveriam estar separados em um distância perpendicular de 250 mm e ambos imersos em líquido. Para completar, o subgrupo de energia determinou que o volume ocupado pelo líquido deveria ser de 70\% do volume total do tanque, resultando assim, em uma altura total de 450 mm. O diâmetro selecionado foi aquele fabricável que mais se ajustou ao sistema de agitação sendo esse com valor de 310 mm. A figura abaixo ilustra essas medidas do tanque.
+
+\begin{figure}[h]
+ \centering
+ \includegraphics[keepaspectratio=true,scale=0.5]{figuras/nivel.eps}
+ \caption{Posicionamento dos sensores de pressão}
+ \label{nivel}
+\end{figure}
+
+A figura abaixo mostra o tanque do biorreator em produção, após o processo de soldagem.
+
+\begin{figure}[h]
+ \centering
+ \includegraphics[keepaspectratio=true,scale=0.2]{figuras/soldagem.eps}
+ \caption{Biorreator após soldagem}
+ \label{soldagem}
+\end{figure}
+
+\subsubsection{Cálculo analítico das tensões no Biorreator}
+
+De acordo com os cálculos realizados previamente, os valores de pressão interna no tanque após a colocação do duto de escape do CO2 serão muito baixos. Porém por uma questão de segurança, serão calculadas as tensões no tanque para valores de pressão que vão até o para atuação da válvula de segurança de pressão.
+
+Segundo (Iecker, 2014), as equações que regem os valores de tensão em paredes cilíndricas, tampo cônico e tampos planos são:
+
+Tensões no cilíndro:
+\[S = (\frac{P.R}{t}+0,6P). \frac{1}{E}\]
+
+Onde:
+
+\begin{itemize}
+	\item P = pressão [KPa];
+	\item R = Raio;
+	\item t = espessura;
+	\item E = eficiência da junta.
+\end{itemize}
+
+Tensões em tampo cônico:
+\[S = \left(\frac{P.R}{t.cos\alpha}+0,6P\right). \frac{1}{E}\]
+
+Onde:
+\begin{itemize}
+	\item \(\alpha\) = ângulo do cone
+\end{itemize}
+
+Tensões em tampos planos:
+\[S=N.P.\left(\frac{D}{t}\right)^2\]
+
+Onde:
+\begin{itemize}
+	\item D = diâmetro da flange;
+	\item N = 0,3 com flange para união aparafusada.
+\end{itemize}
+
+Na condição onde a pressão chegar a máxima para abertura da válvula de segurança.
+
+\subsubsection{Dimensionamento das colunas para sustentação}
+
+Para uma melhor ergonomia na hora de manusear o biorreator foi determinado a implementação de colunas de sustentação para prover uma maior comodidade ao usuário.
+
+A altura determinada para as colunas é de 540 mm de modo a fazer com que o biorreator possua uma altura total de 0,95 m. Altura essa que foi verificada para atender o percentil 50 de altura da população feminina do brasileira. A figura abaixo mostra as dimensões do conjunto.
+
+\begin{figure}[h]
+ \centering
+ \includegraphics[keepaspectratio=true,scale=0.5]{figuras/tanque.eps}
+ \caption{Tanque com as Colunas}
+ \label{tanque}
+\end{figure}
+
+
+Após a determinação da altura das colunas deve-se então verificar um perfil que atenda as solicitações de esforços. Foram selecionados três tubos de inox 304 com diâmetro externo de 1””
+
+Foi realizada uma verificação da possibilidade de flambagem dos apoios do biorreator.
+
+O biorreator possui diversas finalidades, dentre elas aferir temperatura e pressão, além de sistemas de resfriamento e aquecimento. Para todos, foram estabelecidos os locais específicos de perfuração através de um gabarito impresso em escala real para dar precisão. Para o dreno na parte inferior do tanque, há uma válvula de esfera que viabiliza a remoção de levedura, assim como uma válvula na lateral da estrutura para retirar amostras da mistura. Essas regiões foram soldadas com tubo inoxidável de 1 polegada cada.
+
+\begin{figure}[h]
+ \centering
+ \includegraphics[keepaspectratio=true,scale=0.3]{figuras/valvula.eps}
+ \caption{Tanque com as Colunas}
+ \label{valvula}
+\end{figure}
+
+O sensor de temperatura depende de uma estrutura que está em desenvolvimento, onde haverá um orifício para inserção vedado com uma o’\textit{ring} e pressionado através de uma rosca.
+
+Um elemento essencial para o sistema de fermentação, devido à alta quantidade de emissão de gás carbônico é o manômetro, combinado a uma válvula de alívio de pressão
+
+\begin{figure}[h]
+ \centering
+ \includegraphics[keepaspectratio=true,scale=0.4]{figuras/manometro.eps}
+ \caption{Válvula de alívio de pressão}
+ \label{manometro}
+\end{figure}
+
+\begin{figure}[h]
+ \centering
+ \includegraphics[keepaspectratio=true,scale=0.4]{figuras/alivio.eps}
+ \caption{Manômetro de pressão de ar}
+ \label{alivio}
+\end{figure}
+
+O diagrama para o projeto no que tange ao cálculo de tensões e validação está expresso a seguir.
+
+\begin{figure}[h]
+ \centering
+ \includegraphics[keepaspectratio=true,scale=0.5]{figuras/diagrama.eps}
+ \caption{Diagrama do projeto do Biorreator}
+ \label{diagrama}
+\end{figure}
+
+\subsection{Dimensionamento do Sistema de Agitação}
+
+De acordo com (Barbosa, 2004), o sistema de agitação tem como objetivo promover uma melhor circulação do fluido por todo o volume do tanque. Alguns parâmetros de agitação são essenciais para que haja um bom funcionamento e eficiência.
+
+Parâmetros como os tipos de pás, diâmetro do impelidor, dimensões do tanque, altura do fluido no tanque, viscosidade, densidade do fluido e rotação dos impelidores são responsáveis pelo dimensionamento desse sistema (BARBOSA, 2014).
+
+Segundo Barbosa (2014), as pás do tipo retas a 90º criam um fluxo radial e promovem uma boa uniformização da mistura em fluidos pouco viscosos. Esse será então o tipo de impelidor a ser adotado no projeto do sistema de agitação.
+
+De acordo com (McCabe, 1981), o valor do diâmetro do impelidor (Da) é dado por:
+
+\[D_{a}=\frac{1}{3}.T\]
+\[D_{a}=\frac{1}{3}.310 = 103mm\]
+
+Onde:
+\begin{itemize}
+	\item T = Diâmetro do tanque.
+\end{itemize}
+
+A altura (w) das pás são calculadas de acordo com a equação abaixo:
+\[w = \frac{1}{5}Da\]
+\[w = 20,6 mm\]
+
+De acordo com (FASANO et al 1994), a quantidade de impelidores que o tanque deve possuir depende da razão entre a altura do líquido (Z) e o diâmetro do tanque (T), além do número de Reynolds. O quadro 1 mostra o número de impelidores de acordo com Z/T e a faixa do número de Reynolds.
+
+\begin{table}[]
+\centering
+\resizebox{\textwidth}{!} {
+\begin{tabular}{|c|c|c|c|c|c|c|}
+\hline
+\multicolumn{7}{|c|}{Valores máximos permitidos Z/T}                                                                                                                                           \\ \hline
+\multicolumn{1}{|l|}{Faixa de Re} & \multicolumn{2}{l|}{Impelidor alta eficiência} & \multicolumn{2}{l|}{Impelidor 4 pás 45º} & \multicolumn{2}{l|}{Impelidor 4 pás planas ou 6 pás (Rushton)} \\ \hline
+\multicolumn{1}{|l|}{}            & Único                  & Duplo                 & Único               & Duplo              & Único                          & Duplo                         \\ \hline
+10 - 100                          & 0,9                    & 1,7                   & 0,8                 & 1,5                & 0,6                            & 1,2                           \\ \hline
+100 - 1000                        & 1,3                    & 2,1                   & 0,9                 & 1,6                & 0,6                            & 1,2                           \\ \hline
+1000 - 10000                      & 1,4                    & 2,3                   & 1,1                 & 1,8                & 0,7                            & 1,4                           \\ \hline
+\textgreater 10000                & 1,5                    & 2,4                   & 1,2                 & 1,9                & 0,8                            & 1,6                           \\ \hline
+\end{tabular}
+}
+\caption{Determinação da quantidade de impelidores.(FASANO et al 1994)}
+\label{impelidores}
+\end{table}
+
+\subsubsection{Cálculo do diâmetro do eixo}
+
+Segundo (Barbosa, 2014), o dimensionamento do eixo do agitador é feito após ser calculado o valor de potência e torque consumidos pelo sistema de agitação.
+
+\subsubsubsection{Potência Consumida}
+
+Para a realização do cálculo da potência consumida necessita-se do valor do número de Reynolds que é dado pela equação a seguir (BARBOSA, 2014).
+\[Re = \frac{\rho.n.D_{a}^2}{\mu}\]
+
+Onde:
+
+\begin{itemize}
+	\item \(\rho\) = densidade do fluido [Kg/m3];
+	\item n = frequência de rotação [rps];
+	\item \(\mu\) = viscosidade dinâmica.
+\end{itemize}
+
+A densidade e a viscosidade da mistura mosto mais leveduras foram obtidas de forma experimental através de ensaios no laboratório de Química experimental da FGA no Galpão. Os ensaios foram realizados com o mosto na temperatura de 31 ºC, simulando assim as condições de fermentação no biorreator. A FIGURA \ref{equipamentos} mostra algumas etapas da realização do experimento.
+
+\begin{figure}[h]
+ \centering
+ \includegraphics[keepaspectratio=true,scale=0.4]{figuras/equipamentos.eps}
+ \caption{Realização do experimento}
+ \label{equipamentos}
+\end{figure}
+
+A viscosidade cinemática (\(\upsilon\)) da mistura foi obtida com o auxílio de um viscosímetro e seu valor encontrado foi de 2,879 cts.
+A densidade foi obtida através da mensuração com o auxílio de uma balança de precisão da massa do mosto de um volume. Para cada litro de caldo de cana foram usadas 10g de leveduras. O valor de densidade da mistura é de 1065,51 \(Kg/m^3\).
+
+O valor da viscosidade dinâmica pode então ser calculada através da Equação abaixo:
+
+\[\mu=\rho.\upsilon = 0,0030670 \frac{Kg}{m.s}\]
+
+O valor da potência de agitação (Nm) é obtido através da equação 5 (BARBOSA, 2014).
+
+\[N_{m}=N_{p_0}.\rho.D_a^5.n^{3}\]
+
+\[N_{p}=f(Re)\]
+
+Onde:
+\begin{itemize}
+	\item Np = Número de potência
+\end{itemize}
+
+O número de potência está associado ao número de Reynolds. Seu valor para turbinas de pás retas é determinado através do gráfico Npo X Re mostrado na FIGURA X3.
+
+\begin{figure}[h]
+ \centering
+ \includegraphics[keepaspectratio=true,scale=0.5]{figuras/potencia.eps}
+ \caption{Escolha do número de potência.}
+ \label{potencia}
+\end{figure}
+
+Para saber a potência de agitação efetiva \((N_{me})\) é necessário levar em consideração a eficiência do rolamento \((\eta_{r})\), e a eficiência de acionamento \(()\eta_{a})\) devido ao uso do selo mecânico. Os valores de \((\eta_{r})\) e \((\eta_{a})\) são 0,98 e 0,85, respectivamente. A equação 6 dá o valor de Nme (BARBOSA, 2014).
+
+\[N_{me}=\frac{N_{m}}{\eta_r.\eta_a}\]
+
+\subsubsubsection{Dimensionamento do eixo}
+
+O cálculo do eixo é feito para solicitações de torção e flexão combinadas. Esse tipo de eixo só teria esforços cíclicos se houver um valor de desbalanceamento residual alto. (SHIGLEY, 2005 )
+
+Tendo calculado a potência efetiva de agitação e de posse da velocidade de rotação é possível então determinar o torque requerido que atua sobre o eixo. O torque é calculado de acordo com a equação abaixo. (BARBOSA, 2004).
+
+\[T=\frac{N_{me}}{2\pi.n}\]
+
+Considerando a condição mais crítica no agitador onde há um travamento no eixo a força desenvolvida (\(F_f\)) é dada pela equação: (BARBOSA, 2004).
+
+\[F_f=\frac{T}{0,75R}\]
+
+Onde:
+
+\begin{itemize}
+	\item R = raio do impelidor
+\end{itemize}
+
+O momento fletor (Mf) causado no eixo é calculado de acordo com a equação abaixo (BARBOSA, 2004)
+
+\[M_{f}=F_{f}.l\]
+
+Onde:
+\begin{itemize}
+	\item l = comprimento em balanço do eixo.
+\end{itemize}
+
+O diâmetro do eixo pode ser calculado então pela equação de Von Mises a seguir (SHIGLEY, 2005).
+
+\[d=\left[\left(\frac{16.n_s}{\pi.S_y}\right).\left(4Mf^2+\frac{3T^2}{4}\right)^\frac{1}{2}\right]^\frac{1}{3}\]
+
+Onde:
+\begin{itemize}
+	\item \(n_{s}\) = fator de segurança;
+	\item \(S_{y}\) = tensão de escoamento do material (240 MPa para o inox 304)
+\end{itemize}
+
+As equações foram implementadas no MATLAB e seu código está presente no anexo A. A metodologia adotada para o funcionamento do código mostrando as entradas e saídas são mostradas no diagrama abaixo.
+
+\begin{figure}[h]
+ \centering
+ \includegraphics[keepaspectratio=true,scale=0.4]{figuras/blocos.eps}
+ \caption{Diagrama de blocos com sequência adotada em MatLab.}
+ \label{blocos}
+\end{figure}
+
+Os valores obtidos pela rotina de dimensionamento no MATLAB foram comparados com valores obtidos por um software de agitação e mistura comercial chamado cerebromix 10.1 a fim da validação da rotina. O software foi usado em sua versão Demo que é disponibilizada gratuitamente.
+
+Os mesmos parâmetros de entrada do programa de agitação foram inseridos no código de MATLAB e os resultados apresentados por ambos serão mostrados na tabela 1.
